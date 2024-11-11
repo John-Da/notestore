@@ -2,7 +2,7 @@ import { FlatList, Image, ListRenderItem, StyleSheet, Text, TouchableOpacity, Vi
 import React from 'react'
 import { ListingType } from '@/listingType';
 import colors from '@/constants/colors';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 
 
 type Props = {
@@ -15,11 +15,25 @@ const Listings = ({listings}: Props) => {
         return (
             <TouchableOpacity>
                 <View style={styles.item}>
+                    
                     <Image source={{uri: item.image}} style={styles.image} />
+                    
                     <View style={styles.bookmark}>
                         <Ionicons name='bookmark-outline' size={20} color={colors.white} />
                     </View>
+                    
                     <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail' >{item.name}</Text>
+
+                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+                            <FontAwesome5 name='map-marker-alt' size={18} color={colors.primaryColor} />
+                            <Text style={styles.itemLocationTxt}>{item.location}</Text>
+                        </View>
+                        
+                        <Text style={styles.itemPriceTxt}>
+                            ${item.price}
+                        </Text>
+                    </View>
                 </View>
             </TouchableOpacity>
         );
@@ -63,4 +77,13 @@ const styles = StyleSheet.create({
         color: colors.black,
         marginBottom: 10,
     },
+    itemLocationTxt: {
+        marginLeft: 5,
+        fontSize: 12,
+    },
+    itemPriceTxt: {
+        fontSize: 12,
+        fontWeight: '600',
+        color: colors.primaryColor
+    }
 })
