@@ -7,6 +7,8 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import CategoryBtns from '@/components/CategoryBtns'
 import Listings from '@/components/Listings'
 import Places from '@/data/places'
+import GroupListing from '@/components/GroupListing'
+import grouplist from '@/data/grouplist.json'
 
 
 const Page = () => {
@@ -61,7 +63,9 @@ const Page = () => {
 
         <CategoryBtns onCateChanged={onCateChanged} />
 
-        <Listings listings={Places}/>
+        <Listings listings={Places} category={category} />
+
+        <GroupListing />
       </View>
     </>
   );

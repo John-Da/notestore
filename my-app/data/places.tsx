@@ -8,7 +8,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Horse Back Riding'
     },{
         'id': '2',
         'name': 'Beach',
@@ -28,7 +28,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '4',
         'name': 'Forest',
@@ -38,7 +38,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '5',
         'name': 'Forest',
@@ -48,7 +48,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '6',
         'name': 'City',
@@ -68,7 +68,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '8',
         'name': 'Forest',
@@ -78,7 +78,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Kayaking'
     },{
         'id': '9',
         'name': 'Forest',
@@ -88,7 +88,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '10',
         'name': 'Island',
@@ -108,7 +108,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '12',
         'name': 'Forest',
@@ -118,7 +118,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Village'
     },{
         'id': '13',
         'name': 'Forest',
@@ -128,7 +128,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '14',
         'name': 'Forest',
@@ -138,7 +138,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '15',
         'name': 'Forest',
@@ -148,7 +148,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '16',
         'name': 'Forest',
@@ -158,7 +158,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '17',
         'name': 'Forest',
@@ -168,7 +168,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'WaterFall'
     },{
         'id': '18',
         'name': 'Forest',
@@ -178,7 +178,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '19',
         'name': 'Forest',
@@ -188,7 +188,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '20',
         'name': 'Forest',
@@ -198,7 +198,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '21',
         'name': 'Forest',
@@ -208,7 +208,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '22',
         'name': 'Forest',
@@ -218,7 +218,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '23',
         'name': 'Forest',
@@ -228,7 +228,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '24',
         'name': 'Forest',
@@ -238,7 +238,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '25',
         'name': 'Forest',
@@ -248,7 +248,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Island'
     },{
         'id': '26',
         'name': 'Forest',
@@ -258,7 +258,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },{
         'id': '27',
         'name': 'Forest',
@@ -268,7 +268,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Lake'
     },{
         'id': '28',
         'name': 'Forest',
@@ -278,7 +278,7 @@ const Places = [
         'price': '180',
         'duration': '5',
         'location': 'USA',
-        'category': 'Forests'
+        'category': 'Forest'
     },
 ];
 

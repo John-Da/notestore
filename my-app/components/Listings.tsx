@@ -1,46 +1,67 @@
-import { FlatList, Image, ListRenderItem, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { ListingType } from '@/listingType';
+import { ActivityIndicator, FlatList, Image, ListRenderItem, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ListingType } from '@/Types/listingType';
 import colors from '@/constants/colors';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 
 type Props = {
-    listings: any[]
+    listings: ListingType[];
+    category: string;
 };
 
-const Listings = ({listings}: Props) => {
+const Listings = ({listings, category}: Props) => {
+    const [loading, setLoading] = useState(false);
+    const [filteredItem, setFilteredItem] = useState(listings);
+
+    useEffect(() => {
+        setLoading(true);
+
+        const filtered = listings.filter((item) => item.category == category);
+        setFilteredItem(filtered);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 200);
+    }, [category]);
 
     const renderItems:ListRenderItem<ListingType> = ({item}) => {
         return (
-            <TouchableOpacity>
-                <View style={styles.item}>
-                    
-                    <Image source={{uri: item.image}} style={styles.image} />
-                    
-                    <View style={styles.bookmark}>
-                        <Ionicons name='bookmark-outline' size={20} color={colors.white} />
-                    </View>
-                    
-                    <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail' >{item.name}</Text>
-
-                    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-                            <FontAwesome5 name='map-marker-alt' size={18} color={colors.primaryColor} />
-                            <Text style={styles.itemLocationTxt}>{item.location}</Text>
+            <Link href={`/listing/${item.id}`} asChild>
+                <TouchableOpacity>
+                    <View style={styles.item}>
+                        
+                        <Image source={{uri: item.image}} style={styles.image} />
+                        
+                        <View style={styles.bookmark}>
+                            <Ionicons name='bookmark-outline' size={20} color={colors.white} />
                         </View>
                         
-                        <Text style={styles.itemPriceTxt}>
-                            ${item.price}
-                        </Text>
+                        <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail' >{item.name}</Text>
+
+                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+                                <FontAwesome5 name='map-marker-alt' size={18} color={colors.primaryColor} />
+                                <Text style={styles.itemLocationTxt}>{item.location}</Text>
+                            </View>
+                            
+                            <Text style={styles.itemPriceTxt}>
+                                ${item.price}
+                            </Text>
+                        </View>
                     </View>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </Link>
         );
     }
   return (
     <View>
-      <FlatList data={listings} renderItem={renderItems} horizontal showsHorizontalScrollIndicator={false}/>
+        {loading ? (
+            <ActivityIndicator size='large' color={colors.primaryColor}/>
+        ) : (
+            <FlatList data={filteredItem} keyExtractor={(item) => item.id.toString()} renderItem={renderItems} horizontal showsHorizontalScrollIndicator={false}/>
+        )}
     </View>
   )
 }
