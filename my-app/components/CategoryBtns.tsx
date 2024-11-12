@@ -9,7 +9,7 @@ type Props = {
     onCateChanged: (category: string) => void;
 }
 
-const CategoryBtns = ({ onCateChanged}: Props ) => {
+const CategoryBtns = ({ onCateChanged }: Props ) => {
 
     const scrollRef = useRef<ScrollView>(null);
     const itemRef = useRef<TouchableOpacity[] | null[]>([]);

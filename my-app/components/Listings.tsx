@@ -13,18 +13,21 @@ type Props = {
 
 const Listings = ({listings, category}: Props) => {
     const [loading, setLoading] = useState(false);
-    const [filteredItem, setFilteredItem] = useState(listings);
+    const [filteredItem, setFilteredItem] = useState<ListingType[] | null>(null);
 
     useEffect(() => {
         setLoading(true);
 
-        const filtered = listings.filter((item) => item.category == category);
-        setFilteredItem(filtered);
+        const filtered = category === 'All' ?
+        listings :
+        listings.filter((item) => item.category === category);
+        setFilteredItem(filtered.length === 0 ? [] : filtered);
+
 
         setTimeout(() => {
             setLoading(false);
         }, 200);
-    }, [category]);
+    }, [category, listings]);
 
     const renderItems:ListRenderItem<ListingType> = ({item}) => {
         return (
@@ -59,8 +62,10 @@ const Listings = ({listings, category}: Props) => {
     <View>
         {loading ? (
             <ActivityIndicator size='large' color={colors.primaryColor}/>
+        ) : filteredItem && filteredItem.length === 0 ?  (
+            <Text style={{textAlign: 'center', marginVertical:10}}>No listings available in this category</Text>
         ) : (
-            <FlatList data={filteredItem} keyExtractor={(item) => item.id.toString()} renderItem={renderItems} horizontal showsHorizontalScrollIndicator={false}/>
+            <FlatList data={filteredItem || []} keyExtractor={(item) => item.id.toString()} renderItem={renderItems} horizontal showsHorizontalScrollIndicator={false}/>
         )}
     </View>
   )
