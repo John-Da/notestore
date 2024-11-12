@@ -5,33 +5,36 @@ import colors from '@/constants/colors'
 import { Ionicons } from '@expo/vector-icons'
 
 
-const GroupListing = ( {listings} : {listings:GroupType[]}) => {
-
-    const renderItem:ListRenderItem<GroupType> = ({item}) => {
-        return (
-            <View style={styles.item}>
-                <Image source={{uri: item.image}} style={styles.image} />
-                <View>
-                    <Text style={styles.itemTxt}>{item.name}</Text>
-                    <View style={{flexDirection:'row', alignItems:'center'}}>
-                        <Ionicons name='star' size={18} color={colors.primaryColor}/>
-                        <Text style={styles.itemRating}>{item.rating}</Text>
-                        <Text style={styles.itemReview}>({item.reviews})</Text>
-                    </View>
+const GroupListing = ({ listings }: { listings: GroupType[] }) => {
+    const renderItem: ListRenderItem<GroupType> = ({ item }) => (
+        <View style={styles.item}>
+            <Image source={{ uri: item.image || 'fallback-image-uri' }} style={styles.image} />
+            <View>
+                <Text style={styles.itemTxt}>{item.name}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Ionicons name="star" size={18} color={colors.primaryColor} />
+                    <Text style={styles.itemRating}>{item.rating}</Text>
+                    <Text style={styles.itemReview}>({item.reviews})</Text>
                 </View>
             </View>
-        )
-    }
+        </View>
+    );
 
-  return (
-    <View style={{marginTop: 20}}>
-      <Text style={styles.title}>Top Travel Group</Text>
-      <FlatList data={listings} renderItem={renderItem} horizontal showsHorizontalScrollIndicator={false} />
-    </View>
-  )
-}
+    return (
+        <View style={{ marginTop: 20 }}>
+            <Text style={styles.title}>Top Travel Group</Text>
+            <FlatList
+                data={listings}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            />
+        </View>
+    );
+};
 
-export default GroupListing
+export default GroupListing;
 
 const styles = StyleSheet.create({
     item: {

@@ -11,67 +11,62 @@ type Props = {
     category: string;
 };
 
-const Listings = ({listings, category}: Props) => {
+const Listings = ({ listings, category }: Props) => {
     const [loading, setLoading] = useState(false);
-    const [filteredItem, setFilteredItem] = useState<ListingType[] | null>(null);
+    const [filteredItem, setFilteredItem] = useState<ListingType[]>([]);
 
     useEffect(() => {
         setLoading(true);
+        
+        const filtered = category === 'All' ? listings : listings.filter((item) => item.category === category);
+        setFilteredItem(filtered);
 
-        const filtered = category === 'All' ?
-        listings :
-        listings.filter((item) => item.category === category);
-        setFilteredItem(filtered.length === 0 ? [] : filtered);
-
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 200);
+        setTimeout(() => setLoading(false), 100); // Reduce timeout duration for better responsiveness
     }, [category, listings]);
 
-    const renderItems:ListRenderItem<ListingType> = ({item}) => {
-        return (
-            <Link href={`/listing/${item.id}`} asChild>
-                <TouchableOpacity>
-                    <View style={styles.item}>
-                        
-                        <Image source={{uri: item.image}} style={styles.image} />
-                        
-                        <View style={styles.bookmark}>
-                            <Ionicons name='bookmark-outline' size={20} color={colors.white} />
-                        </View>
-                        
-                        <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode='tail' >{item.name}</Text>
-
-                        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-                                <FontAwesome5 name='map-marker-alt' size={18} color={colors.primaryColor} />
-                                <Text style={styles.itemLocationTxt}>{item.location}</Text>
-                            </View>
-                            
-                            <Text style={styles.itemPriceTxt}>
-                                ${item.price}
-                            </Text>
-                        </View>
+    const RenderItem: React.FC<{ item: ListingType }> = React.memo(({ item }) => (
+        <Link href={`/listing/${item.id}`} asChild>
+            <TouchableOpacity>
+                <View style={styles.item}>
+                    <Image source={{ uri: item.image }} style={styles.image} />
+                    <View style={styles.bookmark}>
+                        <Ionicons name="bookmark-outline" size={20} color={colors.white} />
                     </View>
-                </TouchableOpacity>
-            </Link>
-        );
-    }
-  return (
-    <View>
-        {loading ? (
-            <ActivityIndicator size='large' color={colors.primaryColor}/>
-        ) : filteredItem && filteredItem.length === 0 ?  (
-            <Text style={{textAlign: 'center', marginVertical:10}}>No listings available in this category</Text>
-        ) : (
-            <FlatList data={filteredItem || []} keyExtractor={(item) => item.id.toString()} renderItem={renderItems} horizontal showsHorizontalScrollIndicator={false}/>
-        )}
-    </View>
-  )
-}
+                    <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode="tail">
+                        {item.name}
+                    </Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <FontAwesome5 name="map-marker-alt" size={18} color={colors.primaryColor} />
+                            <Text style={styles.itemLocationTxt}>{item.location}</Text>
+                        </View>
+                        <Text style={styles.itemPriceTxt}>${item.price}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        </Link>
+    ));
 
-export default Listings
+    return (
+        <View>
+            {loading ? (
+                <ActivityIndicator size="large" color={colors.primaryColor} />
+            ) : filteredItem.length === 0 ? (
+                <Text style={{ textAlign: 'center', marginVertical: 10 }}>No listings available in this category</Text>
+            ) : (
+                <FlatList
+                    data={filteredItem}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => <RenderItem item={item} />}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
+            )}
+        </View>
+    );
+};
+
+export default Listings;
 
 const styles = StyleSheet.create({
     item: {
