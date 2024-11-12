@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
@@ -50,22 +50,24 @@ const Page = () => {
         ),
       }}/>
       <View style={[styles.container, {paddingTop:headerHeight}]}>
-        <Text style={styles.headingTxt}>Explore The Beautiful World!</Text>
-        <View style={styles.searchSectionWrapper}>
-          <View style={styles.searchBar}>
-            <Ionicons name='search' size={18} style={{marginRight:5}} color={colors.black}/>
-            <TextInput placeholder='Search...' />
+        <ScrollView showsVerticalScrollIndicator={false} >
+          <Text style={styles.headingTxt}>Explore The Beautiful World!</Text>
+          <View style={styles.searchSectionWrapper}>
+            <View style={styles.searchBar}>
+              <Ionicons name='search' size={18} style={{marginRight:5}} color={colors.black}/>
+              <TextInput placeholder='Search...' />
+            </View>
+            <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+              <Ionicons name='options' size={28} color={colors.white} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
-            <Ionicons name='options' size={28} color={colors.white} />
-          </TouchableOpacity>
-        </View>
 
-        <CategoryBtns onCateChanged={onCateChanged} />
+          <CategoryBtns onCateChanged={onCateChanged} />
 
-        <Listings listings={Places} category={category} />
+          <Listings listings={Places} category={category} />
 
-        <GroupListing />
+          <GroupListing listings={grouplist} />
+        </ScrollView>
       </View>
     </>
   );

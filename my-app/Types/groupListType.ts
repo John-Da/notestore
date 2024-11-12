@@ -3,5 +3,5 @@ export interface GroupType {
     name: string;
     image: string;
     rating: number;
-    reviews: string;
+    reviews: number;
 }
