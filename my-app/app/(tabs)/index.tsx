@@ -4,10 +4,10 @@ import { Stack } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import colors from '@/constants/colors'
 import {useHeaderHeight} from '@react-navigation/elements';
-import CategoryBtns from '@/components/CategoryBtns'
-import Listings from '@/components/Listings'
+import CategoryBtns from '@/components/indexCompo/CategoryBtns'
+import Listings from '@/components/indexCompo/Listings'
 import Places from '@/data/places'
-import GroupListing from '@/components/GroupListing'
+import GroupListing from '@/components/indexCompo/GroupListing'
 import grouplist from '@/data/grouplist.json'
 
 
