@@ -5,7 +5,6 @@ import colors from '@/constants/colors';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 
-
 type Props = {
     listings: ListingType[];
     category: string;
@@ -17,11 +16,9 @@ const Listings = ({ listings, category }: Props) => {
 
     useEffect(() => {
         setLoading(true);
-        
         const filtered = category === 'All' ? listings : listings.filter((item) => item.category === category);
         setFilteredItem(filtered);
-
-        setTimeout(() => setLoading(false), 100); // Reduce timeout duration for better responsiveness
+        setLoading(false);
     }, [category, listings]);
 
     const RenderItem: React.FC<{ item: ListingType }> = React.memo(({ item }) => (
@@ -35,8 +32,8 @@ const Listings = ({ listings, category }: Props) => {
                     <Text style={styles.itemTxt} numberOfLines={1} ellipsizeMode="tail">
                         {item.name}
                     </Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={styles.locationContainer}>
+                        <View style={styles.locationWrapper}>
                             <FontAwesome5 name="map-marker-alt" size={18} color={colors.primaryColor} />
                             <Text style={styles.itemLocationTxt}>{item.location}</Text>
                         </View>
@@ -60,6 +57,11 @@ const Listings = ({ listings, category }: Props) => {
                     renderItem={({ item }) => <RenderItem item={item} />}
                     horizontal
                     showsHorizontalScrollIndicator={false}
+                    getItemLayout={(data, index) => ({
+                        length: 240,  // Set item width if fixed
+                        offset: 240 * index,
+                        index
+                    })}
                 />
             )}
         </View>
@@ -106,5 +108,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '600',
         color: colors.primaryColor
-    }
-})
+    },
+    locationContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    locationWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+});
