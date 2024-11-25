@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, Image, ListRenderItem, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ListingType } from '@/Types/listingType';
 import colors from '@/constants/colors';
