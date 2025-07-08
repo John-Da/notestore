@@ -1,2 +1,2 @@
 # NoteStore For Students Communities
-Developed by MeeToo
+Developing by MeeToo
